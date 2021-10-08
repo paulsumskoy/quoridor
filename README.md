@@ -1,0 +1,2 @@
+# quoridor
+Simple game Quoridor

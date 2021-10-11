@@ -7,3 +7,5 @@ Simple game Quoridor
 [Головенко Александр](https://github.com/sashaholovenko)
 
 [Сумской Павел](https://github.com/paulsumskoy)
+
+# How to start

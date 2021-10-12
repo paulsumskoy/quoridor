@@ -1,5 +1,5 @@
 # Quoridor
-Simple game Quoridor
+## Simple game Quoridor
 
 Human VS Bot
 

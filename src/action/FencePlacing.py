@@ -1,9 +1,10 @@
-from src.action.IAction  import *
+from src.action.IAction import *
 from src.interface.Fence import *
+
 
 class FencePlacing(IAction):
     def __init__(self, coord, direction):
-        self.coord     = coord
+        self.coord = coord
         self.direction = direction
 
     def __eq__(self, other):
@@ -17,7 +18,7 @@ class FencePlacing(IAction):
         return NotImplemented
 
     def __hash__(self):
-        #return hash(tuple(sorted(self.__dict__.items())))
+        # return hash(tuple(sorted(self.__dict__.items())))
         return hash((self.coord, self.direction))
 
     def __str__(self):

@@ -1,13 +1,14 @@
 from src.action.IAction import *
 from src.action.FencePlacing import *
 
+
 class IPlayer:
-    def __init__(self, name = None, color = None):
-        self.name   = name
-        self.color  = color
-        self.pawn   = None
+    def __init__(self, name=None, color=None):
+        self.name = name
+        self.color = color
+        self.pawn = None
         self.fences = []
-        self.score  = 0
+        self.score = 0
         self.startPosition = None
         self.endPositions = []
 

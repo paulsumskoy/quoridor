@@ -1,25 +1,26 @@
-from lib.graphics            import *
+from lib.graphics import *
 
 from src.interface.IDrawable import *
-from src.interface.Color     import *
+from src.interface.Color import *
+
 
 class Pawn(IDrawable):
     def __init__(self, board, player):
-        self.board  = board
+        self.board = board
         self.player = player
-        self.coord  = None
+        self.coord = None
 
-    def draw(self, fillColor = None, textColor = Color.WHITE.value):
+    def draw(self, fillColor=None, textColor=Color.WHITE.value):
         if not INTERFACE:
-            return 
+            return
         center = self.getSquare().middle
-        radius = int(self.board.squareSize*0.4)
+        radius = int(self.board.squareSize * 0.4)
         circle = Circle(center, radius)
         circle.setFill(self.player.color.value if fillColor is None else fillColor)
         circle.setWidth(0)
         circle.draw(self.board.window)
         label = Text(center, self.player.name[:1])
-        label.setSize(min(max(5, int(self.board.squareSize/2)), 36))
+        label.setSize(min(max(5, int(self.board.squareSize / 2)), 36))
         label.setTextColor(textColor)
         label.draw(self.board.window)
 
@@ -36,5 +37,3 @@ class Pawn(IDrawable):
 
     def getSquare(self):
         return self.board.getSquareAt(self.coord)
-
-

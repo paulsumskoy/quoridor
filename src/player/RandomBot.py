@@ -1,8 +1,7 @@
 import random
 
-from src.player.IBot    import *
+from src.player.IBot import *
 from src.action.IAction import *
-
 
 
 class RandomBot(IBot):
@@ -16,7 +15,7 @@ class RandomBot(IBot):
         while board.isFencePlacingBlocking(randomFencePlacing) and attempts > 0:
             randomFencePlacing = random.choice(board.storedValidFencePlacings)
             attempts -= 1
-        if (attempts == 0):
+        if attempts == 0:
             return self.moveRandomly()
         return randomFencePlacing
 

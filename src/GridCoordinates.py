@@ -1,8 +1,8 @@
 class GridCoordinates:
 
     def __init__(self, col, row):
-        self.col  = col
-        self.row  = row
+        self.col = col
+        self.row = row
 
     def left(self):
         return GridCoordinates(self.col - 1, self.row)

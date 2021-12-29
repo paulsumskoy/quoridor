@@ -1,4 +1,4 @@
-DEBUG     = True
+DEBUG = True
 INTERFACE = True
 TEMPO_SEC = 0.00
 

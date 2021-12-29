@@ -1,9 +1,6 @@
-import random
-import time
-
-from src.player.RandomBot import *
-from src.action.IAction   import *
 from src.exception.PlayerPathObstructedException import *
+from src.player.RandomBot import *
+
 
 class BuilderBot(RandomBot):
     def computeFencePlacingImpacts(self, board):
@@ -20,7 +17,7 @@ class BuilderBot(RandomBot):
         return fencePlacingImpacts
 
     def getFencePlacingWithTheHighestImpact(self, fencePlacingImpacts):
-        return max(fencePlacingImpacts, key = fencePlacingImpacts.get)
+        return max(fencePlacingImpacts, key=fencePlacingImpacts.get)
 
     def play(self, board) -> IAction:
         if self.remainingFences() < 1 or len(board.storedValidFencePlacings) < 1:
@@ -29,9 +26,9 @@ class BuilderBot(RandomBot):
 
         if len(fencePlacingImpacts) < 1:
             return self.moveRandomly(board)
-        
+
         bestFencePlacing = self.getFencePlacingWithTheHighestImpact(fencePlacingImpacts)
-        
+
         if fencePlacingImpacts[bestFencePlacing] < 1:
             return self.moveRandomly(board)
         return bestFencePlacing

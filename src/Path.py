@@ -1,7 +1,8 @@
 import math
 
-from src.Settings        import *
+from src.Settings import *
 from src.action.PawnMove import *
+
 
 class Path:
 
@@ -21,7 +22,7 @@ class Path:
         return self.moves[0]
 
     def __str__(self):
-        return "[%s] -> %s" % (str(self.startCoord()), " -> ".join(map(lambda move:str(move.toCoord), self.moves)))
+        return "[%s] -> %s" % (str(self.startCoord()), " -> ".join(map(lambda move: str(move.toCoord), self.moves)))
 
     def ManhattanDistance(fromCoord, toCoord):
         return abs(toCoord.col - fromCoord.col) + abs(toCoord.row - fromCoord.row)
@@ -34,7 +35,7 @@ class Path:
                 minManhattanDistance = manhattanDistance
         return minManhattanDistance
 
-    def BreadthFirstSearch(board, startCoord, endCoords, ignorePawns = False):
+    def BreadthFirstSearch(board, startCoord, endCoords, ignorePawns=False):
         global TRACE
         TRACE["Path.BreadthFirstSearch"] += 1
         root = PawnMove(None, startCoord)
@@ -42,22 +43,22 @@ class Path:
         previousMoves = {startCoord: root}
         nextMoves = [root]
         validPawnMoves = board.storedValidPawnMovesIgnoringPawns if ignorePawns else board.storedValidPawnMoves
-        
+
         while nextMoves:
             move = nextMoves.pop(0)
             for endCoord in endCoords:
-                
+
                 if move.toCoord == endCoord:
-                    
+
                     pathMoves = [move]
                     while move.fromCoord is not None:
                         move = previousMoves[move.fromCoord]
                         pathMoves.append(move)
                     pathMoves.reverse()
                     return Path(pathMoves[1:])
-            
+
             validMoves = validPawnMoves[move.toCoord]
-            
+
             sorted(validMoves, key=lambda validMove: Path.ManhattanDistanceMulti(validMove.toCoord, endCoords))
             for validMove in validMoves:
                 if validMove.toCoord not in previousMoves:
@@ -68,7 +69,7 @@ class Path:
     def DepthFirstSearch():
         pass
 
-    def Dijkstra(board, startCoord, endCoords, moveScore = lambda move, step: 1, ignorePawns = False):
+    def Dijkstra(board, startCoord, endCoords, moveScore=lambda move, step: 1, ignorePawns=False):
         global TRACE
         TRACE["Path.Dijkstra"] += 1
         root = PawnMove(None, startCoord)
@@ -99,5 +100,5 @@ class Path:
                     previousMoves[validMove.toCoord] = (validMoveScore, validMove)
         return None
 
-    def AStar():
+    def AStar(self):
         pass

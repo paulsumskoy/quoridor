@@ -1,22 +1,26 @@
 import getopt
+import sys
 
-from src.Settings              import *
-from src.Game                  import *
-from src.player.Human          import *
-from src.player.RandomBot      import *
-from src.player.RunnerBot      import *
-from src.player.BuilderBot     import *
+from src.Game import *
 from src.player.BuildAndRunBot import *
 
 PARAMETERS_ERROR_RETURN_CODE = 1
 
+
 def printUsage():
-    print("Usage: python main.py [{-h|--help}] {-p|--players=}<PlayerName:PlayerType,...> [{-r|--rounds=}<roundCount>] [{-x|--cols=}<ColCount>] [{-y|--rows=}<RowCount>] [{-f|--fences=}<TotalFenceCount>] [{s|--square_size=}<SquareSizeInPixels>]")
-    print("Example: python main.py --players=Pavel:Human,Nikita:BuilderBot,Sasha:RandomBot,Teacher:RunnerBot --square-size=52 --rounds=2")
+    print(
+        "Usage: python main.py [{-h|--help}] {-p|--players=}<PlayerName:PlayerType,...> [{-r|--rounds=}<roundCount>] "
+        "[{-x|--cols=}<ColCount>] [{-y|--rows=}<RowCount>] [{-f|--fences=}<TotalFenceCount>] [{"
+        "s|--square_size=}<SquareSizeInPixels>]")
+    print(
+        "Example: python main.py --players=Pavel:Human,Nikita:BuilderBot,Sasha:RandomBot,Teacher:RunnerBot "
+        "--square-size=52 --rounds=2")
+
 
 def readArguments():
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "p:r:w:x:y:s:h", ["players=", "rounds=", "cols=", "rows=", "fences=", "square_size=", "help"])
+        opts, args = getopt.getopt(sys.argv[1:], "p:r:w:x:y:s:h",
+                                   ["players=", "rounds=", "cols=", "rows=", "fences=", "square_size=", "help"])
     except getopt.GetoptError as err:
         print(err)
         printUsage()
@@ -56,6 +60,7 @@ def readArguments():
             sys.exit(PARAMETERS_ERROR_RETURN_CODE)
     return players, rounds, cols, rows, totalFenceCount, squareSize
 
+
 def main():
     players, rounds, cols, rows, totalFenceCount, squareSize = readArguments()
 
@@ -66,6 +71,7 @@ def main():
     global TRACE
     print("TRACE")
     for i in TRACE:
-    	print("%s: %s" % (i, TRACE[i]))
+        print("%s: %s" % (i, TRACE[i]))
+
 
 main()
